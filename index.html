@@ -2,358 +2,512 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"/>
-  <meta name="mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-capable" content="yes"/>
-  <meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-  <meta name="theme-color" content="#EEEEF8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RK Notes</title>
   <meta name="description" content="RK Notes — Capture every thought beautifully."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ═══════════ STATUS BAR ═══════════ -->
-  <div class="status-bar">
-    <span class="status-time" id="statusTime">9:41</span>
-    <div class="status-icons">
-      <svg width="16" height="11" viewBox="0 0 16 11" fill="currentColor"><rect x="0" y="4" width="2.5" height="7" rx="0.6" opacity="0.35"/><rect x="3.5" y="2.5" width="2.5" height="8.5" rx="0.6" opacity="0.55"/><rect x="7" y="1" width="2.5" height="10" rx="0.6" opacity="0.75"/><rect x="10.5" y="0" width="2.5" height="11" rx="0.6"/></svg>
-      <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1.5 4C3.8 1.5 11.2 1.5 13.5 4"/><path d="M3.5 6.5C5.2 4.8 9.8 4.8 11.5 6.5"/><circle cx="7.5" cy="9.5" r="1.2" fill="currentColor" stroke="none"/></svg>
-      <div class="battery">
-        <div class="battery-body"><div class="battery-level"></div></div>
-        <div class="battery-nub"></div>
+  <!-- ═══════════ TOP NAVBAR ═══════════ -->
+  <header class="top-navbar">
+    <div class="navbar-left">
+      <button class="nav-hamburger" id="sidebarToggle">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="navbar-brand">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span class="brand-name">RK Notes</span>
+      </div>
+      <nav class="navbar-links">
+        <a class="nav-link active" href="#" data-nav="home">Dashboard</a>
+        <a class="nav-link" href="#" data-nav="notes">My Notes</a>
+        <a class="nav-link" href="#" data-nav="ai">AI Assistant</a>
+        <a class="nav-link" href="#" data-nav="profile">Profile</a>
+      </nav>
+    </div>
+    <div class="navbar-center">
+      <div class="navbar-search" id="navSearchBox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="navSearchInput" placeholder="Search notes, tags, content…" autocomplete="off"/>
       </div>
     </div>
-  </div>
-
-  <!-- ═══════════ SCREEN: HOME ═══════════ -->
-  <div class="screen active" id="screenHome">
-
-    <!-- Top bar -->
-    <div class="home-topbar">
-      <div class="avatar-wrap">
-        <div class="avatar">RK</div>
+    <div class="navbar-right">
+      <button class="nav-icon-btn notif-btn" title="Notifications">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <button class="nav-icon-btn" id="themeToggleNav" title="Toggle dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <div class="nav-user-badge">
+        <div class="nav-avatar">RK</div>
+        <span class="nav-user-name">RK Notes</span>
       </div>
-      <div class="topbar-icons">
-        <button class="top-icon-btn" id="searchOpenBtn">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+  </header>
+
+  <!-- ═══════════ APP GRID ═══════════ -->
+  <div class="app-grid">
+
+    <!-- ── COL 1: ICON RAIL ── -->
+    <aside class="icon-rail" id="iconRail">
+      <div class="rail-top">
+        <button class="rail-btn active" data-nav="home" title="Dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span class="rail-label">Home</span>
         </button>
-        <button class="top-icon-btn notif-btn">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span class="notif-dot"></span>
+        <button class="rail-btn" data-nav="notes" title="My Notes">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="rail-label">Notes</span>
         </button>
-      </div>
-    </div>
-
-    <!-- Greeting -->
-    <div class="greeting-section">
-      <h1 class="greeting-text">Good Morning, Alex 👋</h1>
-      <p class="greeting-sub">Let's capture more ideas today.</p>
-    </div>
-
-    <!-- Media & Quick Actions -->
-    <div class="capture-grid">
-      <button class="cap-card cap-purple" id="newNoteBtn">
-        <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-        <div class="cap-text">Text Note</div>
-      </button>
-      
-      <button class="cap-card cap-gold" id="recordAudioBtn">
-        <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
-        <div class="cap-text">Record Audio</div>
-      </button>
-      
-      <button class="cap-card cap-blue" id="uploadAudioBtn">
-        <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-        <div class="cap-text">Upload Audio</div>
-        <input type="file" id="audioFileInput" accept="audio/*" style="display:none" />
-      </button>
-      
-      <button class="cap-card cap-coral" id="youtubeNoteBtn">
-        <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></div>
-        <div class="cap-text">YouTube</div>
-      </button>
-      
-      <button class="cap-card cap-mint" id="meetingNoteBtn">
-        <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
-        <div class="cap-text">Meeting Link</div>
-      </button>
-    </div>
-
-    <!-- Today at a glance -->
-    <div class="section-header">
-      <span class="section-title">Today At A Glance</span>
-      <button class="view-all-btn">View all</button>
-    </div>
-    <div class="glance-row">
-      <div class="glance-card">
-        <div class="glance-top">
-          <span class="glance-num" id="glanceNotes">0</span>
-          <div class="glance-icon-wrap blue"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-        </div>
-        <span class="glance-label">Notes</span>
-        <span class="glance-delta green">+<span id="glanceNotesToday">0</span> today</span>
-      </div>
-      <div class="glance-card">
-        <div class="glance-top">
-          <span class="glance-num">7</span>
-          <div class="glance-icon-wrap green"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-        </div>
-        <span class="glance-label">Tasks</span>
-        <span class="glance-delta green">+2 today</span>
-      </div>
-      <div class="glance-card">
-        <div class="glance-top">
-          <span class="glance-num">12</span>
-          <div class="glance-icon-wrap orange"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
-        </div>
-        <span class="glance-label">Reminders</span>
-        <span class="glance-delta orange">+3 today</span>
-      </div>
-    </div>
-
-    <!-- Recent notes -->
-    <div class="section-header">
-      <span class="section-title">Recent Notes</span>
-      <button class="view-all-btn" id="seeAllBtn">See all</button>
-    </div>
-    <div class="recent-notes-list" id="recentNotesList">
-      <!-- injected by JS -->
-    </div>
-
-    <!-- Extra space for nav -->
-    <div style="height:30px"></div>
-  </div>
-
-  <!-- ═══════════ SCREEN: ALL NOTES ═══════════ -->
-  <div class="screen" id="screenNotes">
-    <div class="notes-topbar">
-      <h2 class="screen-title">My Notes</h2>
-      <div class="topbar-icons">
-        <button class="top-icon-btn" id="searchOpenBtn2">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <button class="rail-btn" data-nav="ai" title="AI Assistant">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          <span class="rail-label">AI</span>
+        </button>
+        <button class="rail-btn" data-nav="profile" title="Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="rail-label">Profile</span>
         </button>
       </div>
-    </div>
-
-    <!-- Filter chips -->
-    <div class="filter-chips-row" id="filterChipsRow">
-      <button class="filter-chip active" data-filter="all">All</button>
-      <button class="filter-chip" data-filter="pinned">📌 Pinned</button>
-      <button class="filter-chip" data-filter="trash">🗑 Trash</button>
-    </div>
-
-    <div class="all-notes-list" id="allNotesList"></div>
-    <div class="empty-notes" id="emptyNotes" style="display:none">
-      <div class="empty-illo">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      </div>
-      <p class="empty-h" id="emptyNotesH">No notes here</p>
-      <p class="empty-p" id="emptyNotesP">Tap + to create your first note</p>
-    </div>
-    <div style="height:30px"></div>
-  </div>
-
-  <!-- ═══════════ SCREEN: AI ASSISTANT ═══════════ -->
-  <div class="screen" id="screenAI">
-    <div class="ai-topbar">
-      <button class="back-btn" id="aiBackBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="ai-title-row">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C6FF7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
-        <span>AI Assistant</span>
-      </div>
-      <button class="top-icon-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </button>
-    </div>
-
-    <!-- Orb -->
-    <div class="ai-orb-section">
-      <div class="ai-orb"></div>
-    </div>
-
-    <div class="ai-greeting">
-      <h2 class="ai-greet-text">Hi Alex! 👋</h2>
-      <p class="ai-greet-sub">Your AI assistant for smarter notes. What would you like<br/>help with today?</p>
-    </div>
-
-    <!-- AI Input -->
-    <div class="ai-input-wrap">
-      <div class="ai-input-box">
-        <span class="ai-input-plus">+</span>
-        <input type="text" class="ai-field" id="aiField" placeholder="Ask anything about your notes…"/>
-        <button class="ai-mic-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </button>
-        <button class="ai-send-btn" id="aiSendBtn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <div class="rail-bottom">
+        <div class="rail-avatars">
+          <div class="mini-avatar" style="background:linear-gradient(135deg,#FF6B81,#FF8E53)">A</div>
+          <div class="mini-avatar" style="background:linear-gradient(135deg,#7C6FF7,#A29BFE)">B</div>
+          <div class="mini-avatar" style="background:linear-gradient(135deg,#00C896,#4A90D9)">C</div>
+        </div>
+        <button class="rail-btn" data-nav="profile" title="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span class="rail-label">Settings</span>
         </button>
       </div>
-      <div class="ai-suggestions">
-        <button class="ai-sugg" data-q="Summarize my notes">Summarize my notes</button>
-        <button class="ai-sugg" data-q="Find my tasks">Find my tasks</button>
-        <button class="ai-sugg" data-q="Show meeting notes">Show meeting notes</button>
-      </div>
-    </div>
+    </aside>
 
-    <div class="section-header" style="padding: 0 20px;">
-      <span class="section-title">Quick Actions</span>
-      <button class="view-all-btn">See all</button>
-    </div>
-    <div class="ai-quick-grid">
-      <div class="ai-qcard green">
-        <div class="ai-qcard-icon green-ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        </div>
-        <p class="ai-qcard-title">Summarize Notes</p>
-        <p class="ai-qcard-desc">Get short summaries of long notes</p>
-      </div>
-      <div class="ai-qcard blue">
-        <div class="ai-qcard-icon blue-ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        </div>
-        <p class="ai-qcard-title">Extract Tasks</p>
-        <p class="ai-qcard-desc">Find clarity tasks and action items</p>
-      </div>
-      <div class="ai-qcard orange">
-        <div class="ai-qcard-icon orange-ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-        </div>
-        <p class="ai-qcard-title">Improve Writing</p>
-        <p class="ai-qcard-desc">Improve clarity, grammar</p>
-      </div>
-      <div class="ai-qcard purple">
-        <div class="ai-qcard-icon purple-ic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        </div>
-        <p class="ai-qcard-title">Generate Ideas</p>
-        <p class="ai-qcard-desc">Brainstorm new ideas</p>
-      </div>
-    </div>
-    <div style="height:30px"></div>
-  </div>
+    <!-- ── COL 2: SIDEBAR PANEL ── -->
+    <aside class="sidebar-panel" id="sidebarPanel">
 
-  <!-- ═══════════ SCREEN: PROFILE ═══════════ -->
-  <div class="screen" id="screenProfile">
-    <div class="notes-topbar">
-      <h2 class="screen-title">Profile</h2>
-    </div>
-    <div class="profile-card">
-      <div class="profile-avatar">RK</div>
-      <h3 class="profile-name">Alex (RK)</h3>
-      <p class="profile-handle">@itsmekriiishna</p>
-    </div>
-    <div class="profile-stats-row">
-      <div class="profile-stat">
-        <span class="profile-stat-num" id="pStatNotes">0</span>
-        <span class="profile-stat-label">Notes</span>
+      <!-- Profile section -->
+      <div class="sb-profile">
+        <div class="sb-avatar-wrap">
+          <div class="sb-avatar">RK</div>
+          <span class="sb-avatar-badge" id="sbNoteBadge">0</span>
+        </div>
+        <div class="sb-user-info">
+          <h3 class="sb-name">Hello, RK! 👋</h3>
+          <p class="sb-email">itsmekriiishna</p>
+        </div>
       </div>
-      <div class="profile-stat-divider"></div>
-      <div class="profile-stat">
-        <span class="profile-stat-num">7</span>
-        <span class="profile-stat-label">Tasks</span>
-      </div>
-      <div class="profile-stat-divider"></div>
-      <div class="profile-stat">
-        <span class="profile-stat-num">12</span>
-        <span class="profile-stat-label">Reminders</span>
-      </div>
-    </div>
-    <div class="settings-items">
-      <div class="settings-section-label">Preferences</div>
-      <div class="settings-row" id="themeSettingRow">
-        <div class="settings-row-left">
-          <div class="settings-row-icon purple-bg">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+
+      <!-- Quick shortcut grid -->
+      <div class="sb-quick-grid">
+        <button class="sb-quick-btn active" data-nav="home">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></rect></svg>
           </div>
+          <span>Dashboard</span>
+        </button>
+        <button class="sb-quick-btn" data-nav="notes">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <span>Notes</span>
+        </button>
+        <button class="sb-quick-btn" id="sbNewNoteBtn">
+          <div class="sbq-icon accent-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span>New Note</span>
+        </button>
+        <button class="sb-quick-btn" id="sbRecordBtn">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </div>
+          <span>Record</span>
+        </button>
+        <button class="sb-quick-btn" id="sbUploadBtn">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <span>Upload</span>
+        </button>
+        <button class="sb-quick-btn" id="sbYoutubeBtn">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+          </div>
+          <span>YouTube</span>
+        </button>
+        <button class="sb-quick-btn" id="sbMeetingBtn">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          <span>Meeting</span>
+        </button>
+        <button class="sb-quick-btn" data-nav="ai">
+          <div class="sbq-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          </div>
+          <span>AI</span>
+        </button>
+      </div>
+
+      <div class="sb-divider"></div>
+
+      <!-- Folders list -->
+      <div class="sb-section-label">Folders</div>
+      <div class="sb-folders" id="sbFolders">
+        <button class="sb-folder-row active" data-filter="all">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          <span class="sf-name">All Notes</span>
+          <span class="sf-count" id="folderCountAll">0</span>
+        </button>
+        <button class="sb-folder-row" data-filter="pinned">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="sf-name">Pinned</span>
+          <span class="sf-count" id="folderCountPinned">0</span>
+        </button>
+        <button class="sb-folder-row" data-filter="trash">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          <span class="sf-name">Trash</span>
+          <span class="sf-count" id="folderCountTrash">0</span>
+        </button>
+      </div>
+
+      <div class="sb-divider"></div>
+
+      <!-- Labels -->
+      <div class="sb-section-label">Labels</div>
+      <div class="sb-labels">
+        <div class="sb-label-row"><span class="sb-label-dot" style="background:#7C6FF7"></span><span>Notes</span></div>
+        <div class="sb-label-row"><span class="sb-label-dot" style="background:#FF6B81"></span><span>Personal</span></div>
+        <div class="sb-label-row"><span class="sb-label-dot" style="background:#00C896"></span><span>Work</span></div>
+        <div class="sb-label-row"><span class="sb-label-dot" style="background:#FFC107"></span><span>Ideas</span></div>
+        <div class="sb-label-row" id="researchLabel"><span class="sb-label-dot" style="background:#4A90D9"></span><span>Research</span></div>
+        <div class="sb-label-input-wrap" id="labelInputWrap" style="display:none">
+          <input type="text" id="labelNameInput" class="sb-label-inline-inp" placeholder="Label name…" maxlength="30"/>
+        </div>
+        <button class="sb-add-label">+ New Label</button>
+      </div>
+
+      <!-- Theme toggle at bottom -->
+      <!-- Sidebar collapse btn -->
+      <button class="sb-collapse-btn" id="sbCollapseBtn" title="Hide sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="sb-bottom">
+        <div class="sb-theme-row">
           <span>Dark Mode</span>
-        </div>
-        <div class="toggle-sw" id="themeToggle">
-          <div class="toggle-knob"></div>
+          <div class="toggle-sw" id="themeToggle"><div class="toggle-knob"></div></div>
         </div>
       </div>
-      <div class="settings-section-label">About</div>
-      <div class="settings-row">
-        <div class="settings-row-left">
-          <div class="settings-row-icon blue-bg">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    </aside>
+
+    <!-- ── COL 3: NOTES LIST PANEL ── -->
+    <section class="notes-panel" id="notesPanel">
+
+      <!-- Panel header -->
+      <div class="np-header">
+        <button class="np-new-btn" id="newNoteBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          New Note
+        </button>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="np-toolbar">
+        <div class="np-toolbar-left">
+          <button class="np-tool-btn active" id="viewListBtn" title="List view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+          <button class="np-tool-btn" id="viewGridBtn" title="Grid view">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+          <div class="np-tool-sep"></div>
+          <button class="np-tool-btn" id="trashSelBtn" title="Trash selected">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          </button>
+        </div>
+        <div class="np-toolbar-right">
+          <button class="np-tool-btn" id="searchOpenBtn" title="Search">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter pills -->
+      <div class="np-filter-row" id="filterChipsRow">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="pinned">📌 Pinned</button>
+        <button class="filter-chip" data-filter="trash">🗑 Trash</button>
+      </div>
+
+      <!-- Notes list -->
+      <div class="np-list" id="allNotesList"></div>
+      <div class="np-empty" id="emptyNotes" style="display:none">
+        <div class="empty-illo">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <p class="empty-h" id="emptyNotesH">No notes here</p>
+        <p class="empty-p" id="emptyNotesP">Click New Note to get started</p>
+      </div>
+    </section>
+
+    <!-- ── COL 4: DETAIL / CONTENT PANEL ── -->
+    <main class="content-panel" id="contentPanel">
+
+      <!-- ── HOME VIEW ── -->
+      <div class="cp-view active" id="viewHome">
+        <div class="home-hero">
+          <div class="home-hero-text">
+            <h1 class="home-greeting" id="homeGreeting">Good Morning, RK 👋</h1>
+            <p class="home-sub">Let's capture more ideas today.</p>
           </div>
-          <span>RK Notes</span>
-        </div>
-        <span class="settings-row-value">v1.0.0</span>
-      </div>
-      <div class="settings-row">
-        <div class="settings-row-left">
-          <div class="settings-row-icon green-bg">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div class="home-stats-row">
+            <div class="home-stat-card">
+              <div class="hsc-top">
+                <span class="hsc-num" id="glanceNotes">0</span>
+                <div class="hsc-icon blue-ic">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                </div>
+              </div>
+              <span class="hsc-label">Total Notes</span>
+              <span class="hsc-delta">+<span id="glanceNotesToday">0</span> today</span>
+            </div>
+            <div class="home-stat-card">
+              <div class="hsc-top">
+                <span class="hsc-num">7</span>
+                <div class="hsc-icon green-ic">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+              </div>
+              <span class="hsc-label">Tasks Done</span>
+              <span class="hsc-delta green">+2 today</span>
+            </div>
+            <div class="home-stat-card">
+              <div class="hsc-top">
+                <span class="hsc-num">12</span>
+                <div class="hsc-icon orange-ic">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                </div>
+              </div>
+              <span class="hsc-label">Reminders</span>
+              <span class="hsc-delta orange">+3 today</span>
+            </div>
           </div>
-          <span>GitHub</span>
         </div>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
-    </div>
-    <div style="height:30px"></div>
-  </div>
 
-  <!-- ═══════════ NOTE DETAIL PANEL ═══════════ -->
-  <div class="detail-panel" id="detailPanel">
-    <div class="detail-topbar">
-      <button class="back-btn" id="detailBackBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="detail-topbar-actions">
-        <button class="top-icon-btn" id="detailAddBtn" title="Add">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <button class="top-icon-btn" title="Share">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-        </button>
-        <button class="top-icon-btn" id="detailMoreBtn" title="More">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-        </button>
-      </div>
-    </div>
-
-    <div class="detail-scroll">
-      <div class="detail-title-wrap">
-        <input type="text" class="detail-title-input" id="detailTitle" placeholder="Note title…"/>
-      </div>
-      <div class="detail-meta-row">
-        <div class="detail-cat-chip" id="detailCatChip">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          Note
+        <!-- Quick capture grid -->
+        <div class="home-capture-section">
+          <div class="home-section-hdr">
+            <span class="home-sec-title">Quick Capture</span>
+          </div>
+          <div class="home-capture-grid">
+            <button class="cap-card cap-purple" id="homeNewNoteBtn">
+              <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+              <div class="cap-text">Text Note</div>
+            </button>
+            <button class="cap-card cap-gold" id="recordAudioBtn">
+              <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
+              <div class="cap-text">Record Audio</div>
+            </button>
+            <button class="cap-card cap-blue" id="uploadAudioBtn">
+              <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+              <div class="cap-text">Upload Audio</div>
+              <input type="file" id="audioFileInput" accept="audio/*" style="display:none"/>
+            </button>
+            <button class="cap-card cap-coral" id="youtubeNoteBtn">
+              <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></div>
+              <div class="cap-text">YouTube</div>
+            </button>
+            <button class="cap-card cap-mint" id="meetingNoteBtn">
+              <div class="cap-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+              <div class="cap-text">Meeting Link</div>
+            </button>
+          </div>
         </div>
-        <span class="detail-date" id="detailDate">Today</span>
+
+        <!-- Recent Notes -->
+        <div class="home-section-hdr">
+          <span class="home-sec-title">Recent Notes</span>
+          <button class="home-see-all" id="seeAllBtn">See all →</button>
+        </div>
+        <div class="home-recent-list" id="recentNotesList"></div>
       </div>
-      <textarea class="detail-body" id="detailContent" placeholder="Start writing your note…"></textarea>
-      <div class="detail-tag-row" id="detailTagRow"></div>
-    </div>
 
-    <!-- Detail toolbar -->
-    <div class="detail-toolbar">
-      <button class="dtb-btn" id="dtbAddBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </button>
-      <button class="dtb-btn" id="dtbCheckBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      </button>
-      <button class="dtb-btn dtb-aa">Aa</button>
-      <button class="dtb-btn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      </button>
-      <button class="dtb-save-btn" id="detailSaveBtn">Save</button>
-    </div>
-  </div>
+      <!-- ── DETAIL EDITOR VIEW ── -->
+      <div class="cp-view" id="viewDetail">
+        <div class="detail-topbar">
+          <button class="detail-back-btn" id="detailBackBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <div class="detail-topbar-actions">
+            <button class="detail-action-btn" id="detailShareBtn" title="Copy note to clipboard">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>
+            <button class="detail-action-btn" id="detailMoreBtn" title="More options">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+            <button class="detail-save-btn" id="detailSaveBtn">Save</button>
+          </div>
+        </div>
+        <div class="detail-editor">
+          <div class="detail-meta-row">
+            <div class="detail-cat-chip" id="detailCatChip">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Note
+            </div>
+            <span class="detail-date" id="detailDate">Today</span>
+          </div>
+          <input type="text" class="detail-title-input" id="detailTitle" placeholder="Note title…"/>
+          <textarea class="detail-body" id="detailContent" placeholder="Start writing your note…"></textarea>
+          <div class="detail-tag-row" id="detailTagRow"></div>
+        </div>
+        <div class="detail-toolbar">
+          <button class="dtb-btn" id="dtbAddBtn" title="New note">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <button class="dtb-btn" id="dtbCheckBtn" title="Checklist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </button>
+          <button class="dtb-btn dtb-aa">Aa</button>
+          <button class="dtb-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </button>
+          <span class="dtb-spacer"></span>
+          <span class="dtb-word-count" id="detailWordCount">0 words</span>
+        </div>
+      </div>
 
-  <!-- ═══════════ NEW NOTE SHEET ═══════════ -->
+      <!-- ── AI VIEW ── -->
+      <div class="cp-view" id="viewAI">
+        <div class="ai-hero">
+          <div class="ai-orb"></div>
+          <h2 class="ai-greet-text">Hi RK! 👋</h2>
+          <p class="ai-greet-sub">Your AI assistant for smarter notes.<br/>What would you like help with today?</p>
+        </div>
+        <div class="ai-input-wrap">
+          <div class="ai-input-box">
+            <span class="ai-input-plus">+</span>
+            <input type="text" class="ai-field" id="aiField" placeholder="Ask anything about your notes…"/>
+            <button class="ai-mic-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </button>
+            <button class="ai-send-btn" id="aiSendBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <div class="ai-suggestions">
+            <button class="ai-sugg" data-q="Summarize my notes">Summarize my notes</button>
+            <button class="ai-sugg" data-q="Find my tasks">Find my tasks</button>
+            <button class="ai-sugg" data-q="Show meeting notes">Show meeting notes</button>
+          </div>
+        </div>
+        <div class="ai-quick-grid">
+          <div class="ai-qcard green">
+            <div class="ai-qcard-icon green-ic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <p class="ai-qcard-title">Summarize Notes</p>
+            <p class="ai-qcard-desc">Get short summaries of long notes</p>
+          </div>
+          <div class="ai-qcard blue">
+            <div class="ai-qcard-icon blue-ic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <p class="ai-qcard-title">Extract Tasks</p>
+            <p class="ai-qcard-desc">Find action items from your notes</p>
+          </div>
+          <div class="ai-qcard orange">
+            <div class="ai-qcard-icon orange-ic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            </div>
+            <p class="ai-qcard-title">Improve Writing</p>
+            <p class="ai-qcard-desc">Improve clarity and grammar</p>
+          </div>
+          <div class="ai-qcard purple">
+            <div class="ai-qcard-icon purple-ic">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <p class="ai-qcard-title">Generate Ideas</p>
+            <p class="ai-qcard-desc">Brainstorm new ideas instantly</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE VIEW ── -->
+      <div class="cp-view" id="viewProfile">
+        <div class="profile-card">
+          <div class="profile-avatar">RK</div>
+          <h3 class="profile-name">RK Notes</h3>
+          <p class="profile-handle">@itsmekriiishna</p>
+        </div>
+        <div class="profile-stats-row">
+          <div class="profile-stat">
+            <span class="profile-stat-num" id="pStatNotes">0</span>
+            <span class="profile-stat-label">Notes</span>
+          </div>
+          <div class="profile-stat-divider"></div>
+          <div class="profile-stat">
+            <span class="profile-stat-num">7</span>
+            <span class="profile-stat-label">Tasks</span>
+          </div>
+          <div class="profile-stat-divider"></div>
+          <div class="profile-stat">
+            <span class="profile-stat-num">12</span>
+            <span class="profile-stat-label">Reminders</span>
+          </div>
+        </div>
+        <div class="settings-items">
+          <div class="settings-section-label">Preferences</div>
+          <div class="settings-row" id="themeSettingRow">
+            <div class="settings-row-left">
+              <div class="settings-row-icon purple-bg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+              </div>
+              <span>Dark Mode</span>
+            </div>
+            <div class="toggle-sw" id="themeToggle2"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="settings-section-label">About</div>
+          <div class="settings-row">
+            <div class="settings-row-left">
+              <div class="settings-row-icon blue-bg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <span>RK Notes</span>
+            </div>
+            <span class="settings-row-value">v2.0.0</span>
+          </div>
+          <div class="settings-row">
+            <div class="settings-row-left">
+              <div class="settings-row-icon green-bg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </div>
+              <span>GitHub</span>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+          <div class="settings-row danger-row" id="clearTrashBtn">
+            <div class="settings-row-left">
+              <div class="settings-row-icon red-bg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+              </div>
+              <span>Clear Trash</span>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div><!-- /.app-grid -->
+
+  <!-- ═══════════ NEW NOTE SHEET (Modal) ═══════════ -->
   <div class="sheet-overlay" id="sheetOverlay"></div>
-  
-  <!-- Text Note Sheet -->
+
   <div class="new-note-sheet" id="newNoteSheet">
     <div class="sheet-drag-bar"></div>
     <div class="sheet-header-row">
@@ -403,7 +557,7 @@
     </div>
   </div>
 
-  <!-- ═══════════ LINK INPUT SHEET (YOUTUBE / MEETING) ═══════════ -->
+  <!-- ═══════════ LINK INPUT SHEET ═══════════ -->
   <div class="new-note-sheet" id="linkSheet">
     <div class="sheet-drag-bar"></div>
     <div class="sheet-header-row">
@@ -440,6 +594,8 @@
   <div class="ctx-menu" id="ctxMenu" style="display:none">
     <button class="ctx-item" id="ctxEdit">✏️ Edit note</button>
     <button class="ctx-item" id="ctxPin">📌 <span id="ctxPinTxt">Pin note</span></button>
+    <button class="ctx-item" id="ctxDuplicate">📋 Duplicate note</button>
+    <button class="ctx-item" id="ctxExport">⬇️ Export as .txt</button>
     <div class="ctx-sep"></div>
     <button class="ctx-item ctx-danger" id="ctxTrash">🗑️ Move to trash</button>
   </div>
@@ -447,28 +603,11 @@
   <!-- ═══════════ TOAST ═══════════ -->
   <div class="toast-bar" id="toastBar"></div>
 
-  <!-- ═══════════ BOTTOM NAV ═══════════ -->
-  <nav class="bottom-nav">
-    <button class="bnav-btn active" data-screen="home" id="bnavHome">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>Home</span>
-    </button>
-    <button class="bnav-btn" data-screen="notes" id="bnavNotes">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      <span>Notes</span>
-    </button>
-    <button class="bnav-fab" id="fabBtn">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-    </button>
-    <button class="bnav-btn" data-screen="ai" id="bnavAI">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
-      <span>AI</span>
-    </button>
-    <button class="bnav-btn" data-screen="profile" id="bnavProfile">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      <span>Profile</span>
-    </button>
-  </nav>
+  <!-- Hidden status time (kept for JS compat) -->
+  <span id="statusTime" style="display:none">0</span>
+
+  <!-- Hidden AI back btn kept for JS compat -->
+  <button id="aiBackBtn" style="display:none"></button>
 
   <script src="app.js"></script>
 </body>
